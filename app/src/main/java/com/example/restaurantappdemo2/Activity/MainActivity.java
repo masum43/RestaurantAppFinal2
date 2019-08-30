@@ -1,0 +1,92 @@
+package com.example.restaurantappdemo2.Activity;
+
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.example.restaurantappdemo2.R;
+
+public class MainActivity extends AppCompatActivity {
+
+    ImageView addItem,searchItem,newItem;
+    AlertDialog.Builder alertDialogBuilder;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        addItem = findViewById(R.id.addItemImageViewId);
+        searchItem = findViewById(R.id.searchItemImageViewId);
+        newItem = findViewById(R.id.newOrderImageViewId);
+
+        addItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentAddItemActivity = new Intent(MainActivity.this, AddItemActivity.class);
+                startActivity(intentAddItemActivity);
+            }
+        });
+
+            searchItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intentSearchItemActivity = new Intent(MainActivity.this, SearchItemActivity.class);
+                    startActivity(intentSearchItemActivity);
+                }
+            });
+
+            newItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+
+                    //titlr
+                    //alertDialogBuilder.setTitle("Select type of Service");
+
+                    alertDialogBuilder.setMessage("Select type of Service");
+
+                    //alertDialogBuilder.setIcon()
+
+                    alertDialogBuilder.setPositiveButton("PARCEL", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Toast.makeText(MainActivity.this, "Parcel", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    alertDialogBuilder.setNegativeButton("SERVICE", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(MainActivity.this, ServiceActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+
+                    alertDialogBuilder.setNeutralButton("HOME DELIVERY", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(MainActivity.this, "HOME DELIVERY", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    alertDialogBuilder.show();
+
+
+                }
+            });
+
+
+
+
+
+
+    }
+}

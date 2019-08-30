@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ServiceActivity">
+
+    <LinearLayout
+        android:padding="5dp"
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="10dp"
+        android:weightSum="2"
+
+        >
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/cardview_dark_background"
+            android:layout_marginRight="8dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Table No"
+                android:textSize="20sp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textStyle="bold"
+                android:layout_gravity="center|left"
+                />
+
+            <Spinner
+
+                android:id="@+id/tableNoSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|right"
+
+
+                >
+            </Spinner>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+           android:background="@color/cardview_dark_background"
+            android:layout_marginLeft="8dp"
+
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Order No: 00000002"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+
+
+                />
+
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/etItemNameTable2"
+            android:hint="Item Name"
+            android:textStyle="bold"
+            android:layout_below="@+id/linear1"
+            android:layout_marginTop="20dp"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/etQuantityTable2"
+            android:hint="Quantity"
+            android:textStyle="bold"
+            android:layout_below="@+id/etItemNameTable2"
+            />
+
+    <LinearLayout
+        android:id="@+id/amountNextSubmitLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:weightSum="4"
+        android:layout_below="@+id/etQuantityTable2"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Amount : "
+            android:gravity="center|left"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/amountTvId"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="0"
+            android:gravity="center|left"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+        <Button
+            android:id="@+id/nextBtnId"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="NEXT"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            />
+        <Button
+            android:id="@+id/submitBtnId"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="SUBMIT"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/totalLinearId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/amountNextSubmitLayout"
+        >
+
+        <TextView
+            android:id="@+id/totalPriceTvId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total:  "
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            />
+        <TextView
+            android:id="@+id/totalAmountTvId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginTop="8dp"
+        />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dispId"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:weightSum="4"
+        android:layout_below="@+id/totalLinearId"
+        >
+        <TextView
+            android:id="@+id/snTvIdSingle2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="SN"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="#ff22"
+            />
+        <TextView
+            android:id="@+id/itemNameSingleId2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Item Name"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="#ff22"
+            />
+        <TextView
+            android:id="@+id/quantityTvSingle2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Quantity"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="#ff22"
+            />
+        <TextView
+            android:id="@+id/priceSingleId2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Price"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="#ff22"
+            />
+
+
+
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/serviceListViewId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/dispId"
+        android:padding="5dp"
+        android:layout_marginTop="5dp"
+        >
+
+    </ListView>
+
+
+
+
+
+
+
+</RelativeLayout>

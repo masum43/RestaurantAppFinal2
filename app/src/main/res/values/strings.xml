@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">RestaurantAppDemo2</string>
+
+    <string-array name="active_status">
+        <item>YES</item>
+        <item>NO</item>
+    </string-array>
+
+    <string-array name="payment_mode">
+        <item>Cash</item>
+        <item>Card</item>
+        <item>Other(Paytm etc)</item>
+    </string-array>
+
+    <string-array name="table_no">
+        <item>                  1</item>
+        <item>                  2</item>
+        <item>                  3</item>
+        <item>                  4</item>
+        <item>                  5</item>
+        <item>                  6</item>
+        <item>                  7</item>
+        <item>                  8</item>
+        <item>                  9</item>
+    </string-array>
+
+    <string-array name="order_no">
+        <item>                  00000001</item>
+        <item>                  00000002</item>
+        <item>                  3</item>
+        <item>                  4</item>
+        <item>                  5</item>
+        <item>                  6</item>
+        <item>                  7</item>
+        <item>                  8</item>
+        <item>                  9</item>
+    </string-array>
+
+
+</resources>

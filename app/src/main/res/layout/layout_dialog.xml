@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp ">
+
+    <EditText
+        android:id="@+id/otherChargesEtId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Other Charges"
+        />
+    <EditText
+        android:layout_below="@+id/otherChargesEtId"
+        android:id="@+id/discountEtId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Discount"
+
+        />
+    <LinearLayout
+        android:id="@+id/amountNextSubmitLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:weightSum="4"
+        android:layout_below="@+id/discountEtId"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Total : "
+            android:gravity="center|left"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/amountTvId"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="0"
+            android:gravity="center|left"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/totalLinearId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/amountNextSubmitLayout"
+        android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/totalPriceTvId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grand Total :  "
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        />
+    <TextView
+        android:id="@+id/totalAmountTvId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginTop="8dp"
+        />
+    </LinearLayout>
+
+
+
+</RelativeLayout>
