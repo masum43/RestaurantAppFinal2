@@ -71,7 +71,7 @@ public class SearchItemActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"No item is found",Toast.LENGTH_LONG).show();
         }else {
             while (cursor.moveToNext()){
-                arrayList.add(cursor.getString(cursor.getColumnIndex(myDatabaseHelper.NAME))+"\t\t\t\t"+cursor.getString(cursor.getColumnIndex(myDatabaseHelper.COL_PRICE)));
+                arrayList.add((cursor.getString(cursor.getColumnIndex(myDatabaseHelper.NAME))+"\t\t\t\t\t\t\t\t")+"\t\t\t\t\t\t\t\t"+cursor.getString(cursor.getColumnIndex(myDatabaseHelper.COL_PRICE)));
             }
             arrayAdapter=new ArrayAdapter(this,R.layout.sample_view,R.id.tvSampleId,arrayList);
             listView.setAdapter(arrayAdapter);

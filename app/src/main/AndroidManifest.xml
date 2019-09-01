@@ -9,12 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.ServiceActivity"></activity>
+        <activity android:name=".EditOrderActivity"></activity>
+        <activity android:name=".Activity.ServiceActivity" />
         <activity android:name=".Activity.SearchItemActivity" />
         <activity android:name=".Activity.AddItemActivity" />
-        <activity android:name=".Activity.MainActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            >
+        <activity
+            android:name=".Activity.MainActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

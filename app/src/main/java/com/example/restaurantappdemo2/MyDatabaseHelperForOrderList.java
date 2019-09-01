@@ -9,7 +9,7 @@ public class MyDatabaseHelperForOrderList extends SQLiteOpenHelper {
 
     Context context;
 
-    public static final String DATABASE_NAME = "restaurent.db";
+    public static final String DATABASE_NAME = "order.db";
     public static final int DATABASE_VERSION = 1 ;
 
     int i;

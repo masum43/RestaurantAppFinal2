@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditOrderActivity"
+    android:padding="16dp"
+    >
+
+    <EditText
+        android:id="@+id/tableNoEtId"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="Enter Table No : "
+        />
+
+    <EditText
+        android:id="@+id/orderNoEtId"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="Enter Order No : "
+        android:layout_below="@+id/tableNoEtId"
+        />
+
+
+    <Button
+        android:id="@+id/editBtnId"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@+id/orderNoEtId"
+        android:text="show"
+        android:background="#A81919"
+
+        />
+
+    <ListView
+        android:id="@+id/editListViewId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/editBtnId"
+        android:layout_marginTop="10dp"
+
+        />
+
+
+</RelativeLayout>

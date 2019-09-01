@@ -11,7 +11,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     Context context;
 
     public static final String DATABASE_NAME = "restaurent.db";
-    public static final int DATABASE_VERSION = 2 ;
+    public static final int DATABASE_VERSION = 4 ;
 
     public static final String TABLE_NAME = "all_item_table";
 
@@ -25,18 +25,47 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             COL_PRICE + " INTEGER NOT NULL " + ")";
 
 
-    //2nd table
+    //2nd table dynamic
     public static final String ITEM_QUANTITY_TABLE_NAME = "item_quantity_table";
     public static final String ID = "_id";
     public static final String NAME = "item_name";
     public static final String QUANTITY = "quantity";
     public static final String PRICE = "price";
 
+    //for 2nd and 3rd table
+    public static final String COL_TABLE_NO_ORDER_LIST = "table_no";
+    public static final String COL_ORDER_NO_ORDER_LIST = "order_no";
+
+
     public static final String CREATE_TABLE_2 = "create table "+ITEM_QUANTITY_TABLE_NAME+" (" +
             ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
             NAME + " TEXT NOT NUll, " +
             QUANTITY + " INTEGER NOT NULL ," +
-            PRICE + " INTEGER NOT NULL " + ")";
+            PRICE + " INTEGER NOT NULL ," +
+            COL_TABLE_NO_ORDER_LIST + " INTEGER NOT NULL ," +
+            COL_ORDER_NO_ORDER_LIST + " INTEGER NOT NULL " +")";
+
+    //3rd table-static
+    public static final String TABLE_NAME_3 = "order_list";
+
+    public static final String COL_ID_ORDER_LIST = "_id";
+    public static final String COL_NAME_ORDER_LIST = "item_name";
+    public static final String COL_QUANTITY_ORDER_LIST = "quantity";
+    public static final String COL_PRICE_ORDER_LIST = "price";
+    public static final String CREATE_TABLE_3 = "create table "+TABLE_NAME_3+" (" +
+            COL_ID_ORDER_LIST + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
+            COL_NAME_ORDER_LIST + " TEXT NOT NUll, " +
+            COL_QUANTITY_ORDER_LIST + " INTEGER NOT NUll, " +
+            COL_PRICE_ORDER_LIST + " INTEGER NOT NULL ," +
+            COL_TABLE_NO_ORDER_LIST + " INTEGER NOT NULL ," +
+            COL_ORDER_NO_ORDER_LIST + " INTEGER NOT NULL " +")";
+
+
+
+
+
+    public static final String COPY_TABLE = "INSERT INTO " + TABLE_NAME_3+ " SELECT * FROM "+ ITEM_QUANTITY_TABLE_NAME;
+    public static final String SEARCH_FOE_EDIT_ORDER = "SELECT * FROM " + TABLE_NAME_3+ " SELECT * FROM "+ ITEM_QUANTITY_TABLE_NAME;
 
 
 
@@ -50,6 +79,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_TABLE);
         db.execSQL(CREATE_TABLE_2);
+        db.execSQL(CREATE_TABLE_3);
 
     }
 
@@ -58,6 +88,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("drop table if exists " + TABLE_NAME);
         db.execSQL("drop table if exists " + ITEM_QUANTITY_TABLE_NAME);
+        db.execSQL("drop table if exists " + TABLE_NAME_3);
         this.onCreate(db);
 
     }
@@ -75,6 +106,43 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor=sqLiteDatabase.rawQuery("SELECT * FROM "+ITEM_QUANTITY_TABLE_NAME,null);
         return cursor;
     }
+    
+
+    public void deleteAll(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(ITEM_QUANTITY_TABLE_NAME,null,null);
+    }
+
+    public void copyAllRowsToAnotherTable(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(COPY_TABLE);
+
+    }
+    public Cursor searchForEditOrder(String  table_no,String order_no, SQLiteDatabase sqLiteDatabase, MyDatabaseHelper myDatabaseHelper){
+
+         sqLiteDatabase=this.getReadableDatabase();
+
+        /*String[] projections = {COL_ID_ORDER_LIST,COL_NAME_ORDER_LIST,COL_PRICE_ORDER_LIST,COL_QUANTITY_ORDER_LIST};
+        String selection = COL_TABLE_NO_ORDER_LIST+ " LIKE ?";
+        String[] selectio_args = {table_no};
+        Cursor cursor = sqLiteDatabase.query(TABLE_NAME_3,projections,selection,selectio_args,null,null,null);
+        return cursor;*/
+
+        //Cursor cursor = sqLiteDatabase.execSQL("SELECT * FROM "+TABLE_NAME_3 + " WHERE "+ COL_TABLE_NO_ORDER_LIST + " LIKE ? ");
+
+        String selectQuery = "SELECT * FROM "+  TABLE_NAME_3 + " WHERE "+  COL_TABLE_NO_ORDER_LIST +" =? AND " + COL_ORDER_NO_ORDER_LIST + " =?";
+        Cursor c = sqLiteDatabase.rawQuery(selectQuery, new String[] { table_no,order_no });
+        /*if (c.moveToFirst()) {
+            temp_address = c.getString(c.getColumnIndex("lastchapter"));
+        }
+        c.close(); */
+
+        return c;
+
+    }
+
+
 
 
 }

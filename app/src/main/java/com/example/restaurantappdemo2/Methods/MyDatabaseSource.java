@@ -4,23 +4,30 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.restaurantappdemo2.Model.ItemAndPriceModel;
 import com.example.restaurantappdemo2.Model.ItemAndQuantityModel;
+import com.example.restaurantappdemo2.Model.OrderListModel;
 import com.example.restaurantappdemo2.MyDatabaseHelper;
 
 import java.util.ArrayList;
 
 import static com.example.restaurantappdemo2.MyDatabaseHelper.COL_NAME;
+import static com.example.restaurantappdemo2.MyDatabaseHelper.COL_ORDER_NO_ORDER_LIST;
 import static com.example.restaurantappdemo2.MyDatabaseHelper.COL_PRICE;
+import static com.example.restaurantappdemo2.MyDatabaseHelper.COL_TABLE_NO_ORDER_LIST;
 import static com.example.restaurantappdemo2.MyDatabaseHelper.ITEM_QUANTITY_TABLE_NAME;
 import static com.example.restaurantappdemo2.MyDatabaseHelper.TABLE_NAME;
+import static com.example.restaurantappdemo2.MyDatabaseHelper.TABLE_NAME_3;
 
 public class MyDatabaseSource {
 
     MyDatabaseHelper myDatabaseHelper;
     SQLiteDatabase sqLiteDatabase;
     ItemAndPriceModel itemAndPriceModel;
+    OrderListModel orderListModel;
 
     public MyDatabaseSource(Context context)
     {
@@ -70,6 +77,8 @@ public class MyDatabaseSource {
         contentValues.put(MyDatabaseHelper.NAME,itemAndQuantityModel.getItemName());
         contentValues.put(MyDatabaseHelper.QUANTITY,itemAndQuantityModel.getQuantity());
         contentValues.put(MyDatabaseHelper.PRICE,itemAndQuantityModel.getPrice());
+        contentValues.put(COL_TABLE_NO_ORDER_LIST,itemAndQuantityModel.getTable_no());
+        contentValues.put(COL_ORDER_NO_ORDER_LIST,itemAndQuantityModel.getOrder_no());
 
         Long insertedRow = sqLiteDatabase.insert(MyDatabaseHelper.ITEM_QUANTITY_TABLE_NAME,null,contentValues);
         this.close();
@@ -146,68 +155,71 @@ public class MyDatabaseSource {
 
 
 
-
-
-//Showing for table 2
-
-   /* public ArrayList<ItemAndQuantityModel> getAmount()
+    public ArrayList<OrderListModel> getAllFromStaticOrderListTable3()
     {
 
-        String amountStr;
         this.open();
-        ArrayList<ItemAndQuantityModel> arrayList2 = new ArrayList<>();
-        ArrayList<ItemAndPriceModel> arrayList1 = new ArrayList<>();
+        ArrayList<OrderListModel> arrayList = new ArrayList<>();
 
-        // select * from student_table
-        Cursor cursor2 = sqLiteDatabase.query(myDatabaseHelper.ITEM_QUANTITY_TABLE_NAME,null,null, null,null,null,null,null);
-        Cursor cursor1 = sqLiteDatabase.query(myDatabaseHelper.TABLE_NAME,null,null, null,null,null,null,null);
+        // select * from table
+        Cursor cursor = sqLiteDatabase.query(TABLE_NAME_3,null,null, null,null,null,null,null);
+        //Cursor cursor2 = sqLiteDatabase.query(TABLE_NAME,null,null, null,null,null,null,null);
 
-        if(cursor2.moveToFirst()&&cursor1.moveToFirst())
+        if(cursor.moveToFirst())
         {
+
             do{
-                String name2 = cursor2.getString(cursor2.getColumnIndex(myDatabaseHelper.NAME));
-                int quantity = cursor2.getInt(cursor2.getColumnIndex(myDatabaseHelper.QUANTITY));
-                int id2 = cursor2.getInt(cursor2.getColumnIndex(myDatabaseHelper.ID));
+                String name = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COL_NAME_ORDER_LIST));
+                int qnty = cursor.getInt(cursor.getColumnIndex(MyDatabaseHelper.COL_QUANTITY_ORDER_LIST));
+                int id = cursor.getInt(cursor.getColumnIndex(MyDatabaseHelper.COL_ID_ORDER_LIST));
+                int price = cursor.getInt(cursor.getColumnIndex(MyDatabaseHelper.COL_PRICE_ORDER_LIST));
+                int table_no = cursor.getInt(cursor.getColumnIndex(COL_TABLE_NO_ORDER_LIST));
+                int order_no = cursor.getInt(cursor.getColumnIndex(COL_ORDER_NO_ORDER_LIST));
 
 
-               do{
-                   String name1 = cursor1.getString(cursor1.getColumnIndex(myDatabaseHelper.COL_NAME));
-                   int price = cursor1.getInt(cursor1.getColumnIndex(myDatabaseHelper.COL_PRICE));
-                   int id1 = cursor1.getInt(cursor1.getColumnIndex(myDatabaseHelper.COL_ID));
-
-                   ItemAndPriceModel itemAndPriceModel = new ItemAndPriceModel(name1,price);// student model e datagula set korechi constructor call kore
-
-                   arrayList1.add(itemAndPriceModel);
-
-                   if(myDatabaseHelper.NAME == myDatabaseHelper.COL_NAME){
-
-                       int amount = price * quantity;
-                       ArrayList<String>amountArray = new ArrayList<>();
-                       amountArray.set(String.valueOf(amount));
-                       break;
-
-                   }
-                   break;
-               }
-               while (cursor1.moveToNext());
-
-
-
-                ItemAndQuantityModel itemAndQuantityModel = new ItemAndQuantityModel(name2,quantity);
-                arrayList2.add(itemAndQuantityModel);
-
+                OrderListModel orderListModel = new OrderListModel(id, name,qnty,price,table_no,order_no); // model e datagula set korechi constructor call kore
+                arrayList.add(orderListModel);
             }
-            while (cursor2.moveToNext());
+            while (cursor.moveToNext());
         }
         this.close();
-        cursor1.close();
-        cursor2.close();
+        cursor.close();
 
-        return amount;
+        return arrayList;
 
     }
 
-    */
+
+    //delete method
+    public boolean deleteItem(OrderListModel model, Context context){
+
+
+        this.open();
+
+        int deletedRow = sqLiteDatabase.delete(TABLE_NAME_3,MyDatabaseHelper.COL_ID_ORDER_LIST+" =?",new String[]{String.valueOf(model.get_id())});
+
+        //Log.d("Value of Id","String.valueOf(model.get_id())");
+
+        Toast.makeText(context, ""+(model.get_id()), Toast.LENGTH_SHORT).show();
+
+        this.close();
+
+        if(deletedRow>0)
+        {
+
+            return true;
+        }
+        else return false;
+
+
+    }
+
+
+
+
+
+
+
 
 
 

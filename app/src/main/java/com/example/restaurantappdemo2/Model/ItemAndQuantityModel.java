@@ -6,6 +6,16 @@ public class ItemAndQuantityModel {
     int quantity;
     int price;
     int id;
+    int table_no;
+    long order_no;
+
+    public ItemAndQuantityModel(String itemName, int quantity, int price, int table_no, long order_no) {
+        this.itemName = itemName;
+        this.quantity = quantity;
+        this.price = price;
+        this.table_no = table_no;
+        this.order_no = order_no;
+    }
 
     public ItemAndQuantityModel(String itemName, int quantity, int price, int id) {
         this.itemName = itemName;
@@ -14,11 +24,6 @@ public class ItemAndQuantityModel {
         this.id = id;
     }
 
-
-    public ItemAndQuantityModel(String itemName, int quantity) {
-        this.itemName = itemName;
-        this.quantity = quantity;
-    }
 
     public ItemAndQuantityModel(String itemName, int quantity, int price) {
         this.itemName = itemName;
@@ -56,5 +61,21 @@ public class ItemAndQuantityModel {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getTable_no() {
+        return table_no;
+    }
+
+    public void setTable_no(int table_no) {
+        this.table_no = table_no;
+    }
+
+    public long getOrder_no() {
+        return order_no;
+    }
+
+    public void setOrder_no(int order_no) {
+        this.order_no = order_no;
     }
 }
