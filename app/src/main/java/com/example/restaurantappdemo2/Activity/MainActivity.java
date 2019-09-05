@@ -13,7 +13,7 @@ import com.example.restaurantappdemo2.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView addItem,searchItem,newItem,mEditOrderId,mItemReview;
+    ImageView addItem,searchItem,newItem,mEditOrderId,mItemReview,mReportImageViewId;
     AlertDialog.Builder alertDialogBuilder;
 
     @Override
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         newItem = findViewById(R.id.newOrderImageViewId);
         mEditOrderId = findViewById(R.id.editOrderId);
         mItemReview = findViewById(R.id.itemReviewImageViewId);
+        mReportImageViewId = findViewById(R.id.reportImageViewId);
 
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +100,16 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(MainActivity.this, ItemReviewActivity.class);
                     startActivity(intent);
+                }
+            });
+
+            mReportImageViewId.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(MainActivity.this, ReportActivity.class);
+                    startActivity(intent);
+
                 }
             });
 
