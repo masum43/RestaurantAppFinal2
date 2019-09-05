@@ -108,8 +108,6 @@ public class ServiceActivity extends AppCompatActivity {
                                 }
 
 
-                                //int price = cursor.getInt(cursor.getColumnIndex(MyDatabaseHelper.COL_PRICE));
-                                //int qnty = cursor.getInt(cursor.getColumnIndex(MyDatabaseHelper.QUANTITY));
                                 int qnty = Integer.parseInt(quantity_Str);
 
                                 int amount = price*qnty;
@@ -121,8 +119,6 @@ public class ServiceActivity extends AppCompatActivity {
                                         totalAmountTv.setText(total_price);
 
                                 MyDatabaseSource source = new MyDatabaseSource(ServiceActivity.this);
-                                /*MyCustomAdapter myCustomAdapter = new MyCustomAdapter(getApplicationContext(),source.getAllItemWithPrice());
-                                listView.setAdapter(myCustomAdapter); */
                                 MyCustomAdapterForItemWithQuantity myCustomAdapterForItemWithQuantity = new MyCustomAdapterForItemWithQuantity(ServiceActivity.this,source.getAllItemWithQuantity());
                                 listView.setAdapter(myCustomAdapterForItemWithQuantity);
 
@@ -138,19 +134,6 @@ public class ServiceActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-
-
-
-                //order_nb_change = order_nb_change+1;
-                //String order_nb_change_Str = String.valueOf(order_nb_change);
-                //mOrder_nb_tv.setText(order_nb_change_Str);
-
-                //mOrder_nb_tv.setText(String.valueOf(order_nb_change));
-
-
-
-
-
                 alertDialogBuilder = new AlertDialog.Builder(ServiceActivity.this);
 
                 //titlr
@@ -163,13 +146,12 @@ public class ServiceActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         selection = paymentMode[which];
-                                //dialog.dismiss();
+
                     }
                 });
 
-                //alertDialogBuilder.setIcon()
 
-                alertDialogBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                /*alertDialogBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -180,8 +162,26 @@ public class ServiceActivity extends AppCompatActivity {
                         startActivity(intent);
                         //openDialog();
 
+
+                    }
+                }); */
+
+
+
+                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        showaccount();
+                    }
+
+                    private void showaccount() {
+
+                        Account_Class_Activity account_class_activity=new Account_Class_Activity();
+                        account_class_activity.show(getSupportFragmentManager(),"Account Class Activity");
                     }
                 });
+
+
 
                 alertDialogBuilder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                     @Override
@@ -195,6 +195,8 @@ public class ServiceActivity extends AppCompatActivity {
                 });
                 AlertDialog dialog = alertDialogBuilder.create();
                 alertDialogBuilder.show();
+
+
 
             }
         });
