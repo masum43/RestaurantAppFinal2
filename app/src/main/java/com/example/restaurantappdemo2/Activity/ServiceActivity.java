@@ -171,13 +171,22 @@ public class ServiceActivity extends AppCompatActivity {
                 alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(ServiceActivity.this,AccountActiity2.class);
+                        intent.putExtra("Total_Amount",String.valueOf(total));
+                        Toast.makeText(ServiceActivity.this, ""+total, Toast.LENGTH_SHORT).show();
                         showaccount();
                     }
 
                     private void showaccount() {
 
                         Account_Class_Activity account_class_activity=new Account_Class_Activity();
-                        account_class_activity.show(getSupportFragmentManager(),"Account Class Activity");
+                        Bundle bundle = new Bundle();
+                        bundle.putString("TOTAL", String.valueOf(total));
+                        account_class_activity.setArguments(bundle);
+                        account_class_activity.show((ServiceActivity.this).getSupportFragmentManager(),"Account Class Activity");
+
+
+                        //account_class_activity.show(getSupportFragmentManager(),"Account Class Activity");
                     }
                 });
 
