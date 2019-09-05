@@ -4,10 +4,29 @@ public class ItemAndPriceModel {
 
     String itemName;
     int price;
+    int ratings;
+
+    public ItemAndPriceModel() {
+    }
+
+    public ItemAndPriceModel(String itemName, int price, int ratings) {
+        this.itemName = itemName;
+        this.price = price;
+        this.ratings = ratings;
+    }
+
 
     public ItemAndPriceModel(String itemName, int price) {
         this.itemName = itemName;
         this.price = price;
+    }
+
+    public int getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(int ratings) {
+        this.ratings = ratings;
     }
 
     public String getItemName() {

@@ -1,4 +1,4 @@
-package com.example.restaurantappdemo2;
+package com.example.restaurantappdemo2.Activity;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -18,14 +18,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.restaurantappdemo2.Methods.MyDatabaseSource;
-import com.example.restaurantappdemo2.Model.ItemAndQuantityModel;
 import com.example.restaurantappdemo2.Model.OrderListModel;
+import com.example.restaurantappdemo2.Methods.MyDatabaseHelper;
+import com.example.restaurantappdemo2.R;
 
 import java.util.ArrayList;
-
-import static com.example.restaurantappdemo2.MyDatabaseHelper.COL_ORDER_NO_ORDER_LIST;
-import static com.example.restaurantappdemo2.MyDatabaseHelper.COL_TABLE_NO_ORDER_LIST;
-import static com.example.restaurantappdemo2.MyDatabaseHelper.TABLE_NAME_3;
 
 public class EditOrderActivity extends AppCompatActivity {
 

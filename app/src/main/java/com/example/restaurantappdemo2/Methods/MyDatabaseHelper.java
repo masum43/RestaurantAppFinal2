@@ -1,28 +1,30 @@
-package com.example.restaurantappdemo2;
+package com.example.restaurantappdemo2.Methods;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v4.content.ContextCompat;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     Context context;
 
     public static final String DATABASE_NAME = "restaurent.db";
-    public static final int DATABASE_VERSION = 4 ;
+    public static final int DATABASE_VERSION = 6 ;
 
     public static final String TABLE_NAME = "all_item_table";
 
     public static final String COL_ID = "_id";
     public static final String COL_NAME = "item_name";
     public static final String COL_PRICE = "price";
+    public static final String COL_RATING = "ratings";
 
     public static final String CREATE_TABLE = "create table "+TABLE_NAME+" (" +
             COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
             COL_NAME + " TEXT NOT NUll, " +
-            COL_PRICE + " INTEGER NOT NULL " + ")";
+            COL_PRICE + " INTEGER NOT NULL, " +
+            COL_RATING + " INTEGER NOT NULL " +
+            ")";
 
 
     //2nd table dynamic
@@ -123,20 +125,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
          sqLiteDatabase=this.getReadableDatabase();
 
-        /*String[] projections = {COL_ID_ORDER_LIST,COL_NAME_ORDER_LIST,COL_PRICE_ORDER_LIST,COL_QUANTITY_ORDER_LIST};
-        String selection = COL_TABLE_NO_ORDER_LIST+ " LIKE ?";
-        String[] selectio_args = {table_no};
-        Cursor cursor = sqLiteDatabase.query(TABLE_NAME_3,projections,selection,selectio_args,null,null,null);
-        return cursor;*/
-
-        //Cursor cursor = sqLiteDatabase.execSQL("SELECT * FROM "+TABLE_NAME_3 + " WHERE "+ COL_TABLE_NO_ORDER_LIST + " LIKE ? ");
-
         String selectQuery = "SELECT * FROM "+  TABLE_NAME_3 + " WHERE "+  COL_TABLE_NO_ORDER_LIST +" =? AND " + COL_ORDER_NO_ORDER_LIST + " =?";
         Cursor c = sqLiteDatabase.rawQuery(selectQuery, new String[] { table_no,order_no });
-        /*if (c.moveToFirst()) {
-            temp_address = c.getString(c.getColumnIndex("lastchapter"));
-        }
-        c.close(); */
 
         return c;
 

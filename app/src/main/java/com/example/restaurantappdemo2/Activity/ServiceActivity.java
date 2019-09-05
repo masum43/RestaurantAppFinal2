@@ -1,11 +1,9 @@
 package com.example.restaurantappdemo2.Activity;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,18 +15,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.restaurantappdemo2.Adapter.MyCustomAdapter;
 import com.example.restaurantappdemo2.Adapter.MyCustomAdapterForItemWithQuantity;
 import com.example.restaurantappdemo2.Methods.MyDatabaseSource;
-import com.example.restaurantappdemo2.Model.ItemAndPriceModel;
 import com.example.restaurantappdemo2.Model.ItemAndQuantityModel;
-import com.example.restaurantappdemo2.MyDatabaseHelper;
+import com.example.restaurantappdemo2.Methods.MyDatabaseHelper;
 import com.example.restaurantappdemo2.R;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-
-import static com.example.restaurantappdemo2.MyDatabaseHelper.ITEM_QUANTITY_TABLE_NAME;
 
 public class ServiceActivity extends AppCompatActivity {
 

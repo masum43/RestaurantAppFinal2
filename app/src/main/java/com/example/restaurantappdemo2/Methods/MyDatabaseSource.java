@@ -4,23 +4,19 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.example.restaurantappdemo2.Model.ItemAndPriceModel;
 import com.example.restaurantappdemo2.Model.ItemAndQuantityModel;
 import com.example.restaurantappdemo2.Model.OrderListModel;
-import com.example.restaurantappdemo2.MyDatabaseHelper;
 
 import java.util.ArrayList;
 
-import static com.example.restaurantappdemo2.MyDatabaseHelper.COL_NAME;
-import static com.example.restaurantappdemo2.MyDatabaseHelper.COL_ORDER_NO_ORDER_LIST;
-import static com.example.restaurantappdemo2.MyDatabaseHelper.COL_PRICE;
-import static com.example.restaurantappdemo2.MyDatabaseHelper.COL_TABLE_NO_ORDER_LIST;
-import static com.example.restaurantappdemo2.MyDatabaseHelper.ITEM_QUANTITY_TABLE_NAME;
-import static com.example.restaurantappdemo2.MyDatabaseHelper.TABLE_NAME;
-import static com.example.restaurantappdemo2.MyDatabaseHelper.TABLE_NAME_3;
+import static com.example.restaurantappdemo2.Methods.MyDatabaseHelper.COL_ORDER_NO_ORDER_LIST;
+import static com.example.restaurantappdemo2.Methods.MyDatabaseHelper.COL_TABLE_NO_ORDER_LIST;
+import static com.example.restaurantappdemo2.Methods.MyDatabaseHelper.ITEM_QUANTITY_TABLE_NAME;
+import static com.example.restaurantappdemo2.Methods.MyDatabaseHelper.TABLE_NAME;
+import static com.example.restaurantappdemo2.Methods.MyDatabaseHelper.TABLE_NAME_3;
 
 public class MyDatabaseSource {
 
@@ -59,6 +55,7 @@ public class MyDatabaseSource {
         ContentValues contentValues = new ContentValues();
         contentValues.put(MyDatabaseHelper.COL_NAME,itemAndPriceModel.getItemName()); //MyDatabaseHelper e error thakte pare
         contentValues.put(MyDatabaseHelper.COL_PRICE,itemAndPriceModel.getPrice());
+        contentValues.put(MyDatabaseHelper.COL_RATING,itemAndPriceModel.getRatings());
 
         Long insertedRow = sqLiteDatabase.insert(TABLE_NAME,null,contentValues);
         this.close();
@@ -69,6 +66,23 @@ public class MyDatabaseSource {
         }
         else return false;
     }
+
+
+
+    public void updateTable1(ItemAndPriceModel itemAndPriceModel , String item_name)
+    {
+        this.open();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(MyDatabaseHelper.COL_RATING,itemAndPriceModel.getRatings());
+
+        sqLiteDatabase.update(TABLE_NAME, contentValues,
+                MyDatabaseHelper.COL_NAME + " = ? ", new String[]{item_name});
+
+    }
+
+
+
     //Item Name with Quantity 2nd table insert method
     public boolean addItemWithQuantity(ItemAndQuantityModel itemAndQuantityModel)
     {
@@ -106,8 +120,10 @@ public class MyDatabaseSource {
                 String name = cursor.getString(cursor.getColumnIndex(myDatabaseHelper.COL_NAME));
                 int price = cursor.getInt(cursor.getColumnIndex(myDatabaseHelper.COL_PRICE));
                 int id = cursor.getInt(cursor.getColumnIndex(myDatabaseHelper.COL_ID));
+                //int rating = cursor.getInt(cursor.getColumnIndex(myDatabaseHelper.COL_RATING));
 
-                ItemAndPriceModel itemAndPriceModel = new ItemAndPriceModel(name,price); // student model e datagula set korechi constructor call kore
+
+                ItemAndPriceModel itemAndPriceModel = new ItemAndPriceModel(name,price); // model e datagula set korechi constructor call kore
                 arrayList.add(itemAndPriceModel);
             }
             while (cursor.moveToNext());
