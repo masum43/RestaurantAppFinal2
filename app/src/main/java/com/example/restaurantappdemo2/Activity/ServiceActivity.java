@@ -171,10 +171,14 @@ public class ServiceActivity extends AppCompatActivity {
                 alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(ServiceActivity.this,AccountActiity2.class);
-                        intent.putExtra("Total_Amount",String.valueOf(total));
-                        Toast.makeText(ServiceActivity.this, ""+total, Toast.LENGTH_SHORT).show();
+
+                        myDatabaseHelper.copyAllRowsToAnotherTable();
+
+                        myDatabaseHelper.deleteAll();
+
                         showaccount();
+
+
                     }
 
                     private void showaccount() {

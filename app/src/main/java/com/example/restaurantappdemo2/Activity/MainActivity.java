@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentAddItemActivity = new Intent(MainActivity.this, AddItemActivity.class);
                 startActivity(intentAddItemActivity);
+                finish();
             }
         });
 
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intentSearchItemActivity = new Intent(MainActivity.this, SearchItemActivity.class);
                     startActivity(intentSearchItemActivity);
+                    finish();
                 }
             });
 
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intent = new Intent(MainActivity.this, ServiceActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                     });
 
@@ -92,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(MainActivity.this, EditOrderActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             });
 
@@ -100,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(MainActivity.this, ItemReviewActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             });
 
@@ -109,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(MainActivity.this, ReportActivity.class);
                     startActivity(intent);
+                    finish();
 
                 }
             });

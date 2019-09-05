@@ -19,6 +19,7 @@ import com.example.restaurantappdemo2.R;
 public class Account_Class_Activity extends AppCompatDialogFragment {
     private EditText other_charge,discount;
     TextView totalTv,grandTv;
+    int finalTotalInt;
  //   private AccountClassListener accountClassListener;
 
     @Override
@@ -48,20 +49,22 @@ public class Account_Class_Activity extends AppCompatDialogFragment {
 
         /*if(other_char.equals(null) && discount_char.equals(null))
             grandTv.setText(String.valueOf(total));
-        else {
+        else { */
 
             int other_chargeInt = Integer.parseInt(other_char);
             int discount_chargeInt = Integer.parseInt(discount_char);
             int totalInt = Integer.parseInt(total);
 
             totalInt = totalInt+other_chargeInt-discount_chargeInt;
+            finalTotalInt = totalInt;
             grandTv.setText(String.valueOf(totalInt));
-        } */
+
 
 
 
 
         totalTv.setText(total);
+
 
 
         builder.setView(view).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
@@ -74,7 +77,15 @@ public class Account_Class_Activity extends AppCompatDialogFragment {
             public void onClick(DialogInterface dialogInterface, int i) {
 
                // accountClassListener.sureorder(other_char,discount_char);
-                Toast.makeText(getContext(),"Order is successfully",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"Order is successfully, You have to pay only "+ finalTotalInt+" Tk",Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(getActivity(), ServiceActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                //finish();
+
+
+
             }
         });
 
