@@ -37,12 +37,6 @@ public class MyDatabaseSource {
 
     }
 
-    public SQLiteDatabase cursorRead()
-    {
-        sqLiteDatabase = myDatabaseHelper.getReadableDatabase();
-
-        return sqLiteDatabase;
-    }
 
     public void close()
     {
@@ -207,7 +201,7 @@ public class MyDatabaseSource {
 
 
     //delete method
-    public boolean deleteItem(OrderListModel model, Context context){
+    public boolean deleteItem(OrderListModel model){
 
 
         this.open();
@@ -215,8 +209,6 @@ public class MyDatabaseSource {
         int deletedRow = sqLiteDatabase.delete(TABLE_NAME_3,MyDatabaseHelper.COL_ID_ORDER_LIST+" =?",new String[]{String.valueOf(model.get_id())});
 
         //Log.d("Value of Id","String.valueOf(model.get_id())");
-
-        Toast.makeText(context, ""+(model.get_id()), Toast.LENGTH_SHORT).show();
 
         this.close();
 

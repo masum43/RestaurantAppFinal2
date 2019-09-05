@@ -151,23 +151,6 @@ public class ServiceActivity extends AppCompatActivity {
                 });
 
 
-                /*alertDialogBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        myDatabaseHelper.copyAllRowsToAnotherTable();
-
-                        myDatabaseHelper.deleteAll();
-                        Intent intent = new Intent(ServiceActivity.this, ServiceActivity.class);
-                        startActivity(intent);
-                        //openDialog();
-
-
-                    }
-                }); */
-
-
-
                 alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -183,14 +166,14 @@ public class ServiceActivity extends AppCompatActivity {
 
                     private void showaccount() {
 
-                        Account_Class_Activity account_class_activity=new Account_Class_Activity();
+                        GrandTotalActivity grandTotal_activity =new GrandTotalActivity();
                         Bundle bundle = new Bundle();
                         bundle.putString("TOTAL", String.valueOf(total));
-                        account_class_activity.setArguments(bundle);
-                        account_class_activity.show((ServiceActivity.this).getSupportFragmentManager(),"Account Class Activity");
+                        grandTotal_activity.setArguments(bundle);
+                        grandTotal_activity.show((ServiceActivity.this).getSupportFragmentManager(),"Account Class Activity");
 
 
-                        //account_class_activity.show(getSupportFragmentManager(),"Account Class Activity");
+                        //grandTotal_activity.show(getSupportFragmentManager(),"Account Class Activity");
                     }
                 });
 
@@ -217,8 +200,5 @@ public class ServiceActivity extends AppCompatActivity {
 
     }
 
-    private void openDialog() {
-
-    }
 }
 

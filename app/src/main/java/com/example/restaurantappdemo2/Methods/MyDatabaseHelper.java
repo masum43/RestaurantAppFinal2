@@ -102,12 +102,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Cursor ShowitemWithQuantity(MyDatabaseHelper myDatabaseHelper)
-    {
-        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
-        Cursor cursor=sqLiteDatabase.rawQuery("SELECT * FROM "+ITEM_QUANTITY_TABLE_NAME,null);
-        return cursor;
-    }
     
 
     public void deleteAll(){

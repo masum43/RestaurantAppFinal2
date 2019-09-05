@@ -33,7 +33,6 @@ public class EditOrderActivity extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase;
     ArrayList<String> arrayList;
     ArrayAdapter arrayAdapter;
-    String search_table_no;
     ArrayList<OrderListModel>deleteArrayList;
     MyDatabaseSource myDatabaseSource;
     @Override
@@ -51,7 +50,7 @@ public class EditOrderActivity extends AppCompatActivity {
         myDatabaseHelper = new MyDatabaseHelper(this);
         myDatabaseSource = new MyDatabaseSource(this);
 
-        //To delete single item now need to register gridview with context menu
+        //To delete single item now need to register listview with context menu
         registerForContextMenu(mEditListview);
 
         mEditBtn.setOnClickListener(new View.OnClickListener() {
@@ -106,14 +105,15 @@ public class EditOrderActivity extends AppCompatActivity {
             //Toast.makeText(this, "Error :  "+deleteArrayList, Toast.LENGTH_LONG).show();
 
 
-                Boolean status = myDatabaseSource.deleteItem(deleteArrayList.get(adapterContextMenuInfo.position),this);
+                Boolean status = myDatabaseSource.deleteItem(deleteArrayList.get(adapterContextMenuInfo.position));
 
 
 
                 if(status){
-                    Toast.makeText(this, "Deleted Successfully. Please Exit and come back to see the change....", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(EditOrderActivity.this,EditOrderActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(this, "Deleted Successfully.....", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "To see the change type Show Button again.....", Toast.LENGTH_LONG).show();
+                    //Intent intent = new Intent(EditOrderActivity.this,EditOrderActivity.class);
+                    //startActivity(intent);
                 }
                 else {
                     Toast.makeText(this, "Failed to delete.......", Toast.LENGTH_SHORT).show();
